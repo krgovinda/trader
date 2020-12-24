@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test 1</title>
+    <style>
+        body{
+            background-color: dimgrey;
+        }
+    </style>
+</head>
+<body>
+   <script>
+       function isAlphabet(){
+           //error first letter doesnt reading
+          var sentence = document.getElementById('name').value;
+           var x = sentence.length;
+           while(x!=0){
+               if(isNaN(sentence.charAt(x))==true){
+                    alert(sentence.charAt(1));
+               }
+               x--;
+           }
+//           alert(count);
+//           if(count!=0){
+//               alert(count);
+//               n.focus();
+//           }
+       }
+    
+    </script>
+   
+   <h1>test..</h1>
+   <br>
+   <label for="name">Name</label>
+   <input type="text" name="" id="name" onfocusout="isAlphabet()">
+    
+</body>
+</html>
