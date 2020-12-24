@@ -1,0 +1,58 @@
+body{
+    background-color: #f4eded;
+}
+
+#contact .card:hover i,#contact .card:hover h4{
+	color: #87d37c;
+}
+
+#bgc,#agc,#cgc,#dgc{
+    background-color: #f4eded;
+}
+.shade{
+    text-shadow: 2px 2px 2px white;
+}
+
+nav a{
+    display: block;
+    text-decoration: none;
+    color: aliceblue;
+    padding: 8px;
+    margin: 4px;
+    
+}
+
+mar{
+    margin-top: 14px;
+}
+
+
+nav a:hover, a:active, a:visited{
+    text-decoration: none;
+    color: whitesmoke;
+    
+}
+
+nav h1 a:active, a:visited{
+    border: none;
+    
+}
+
+nav ul li{
+    list-style-type: none;
+    float: left;
+}
+
+nav ul li a:hover, a:active{
+    border-bottom: solid;
+/*    background-color: #151515;*/
+}
+i{
+
+    color: #F95658;
+}
+footer{
+    background-color: #49494c;
+    color: aliceblue;
+    opacity: 0.85;
+}

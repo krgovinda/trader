@@ -1,0 +1,32 @@
+body{
+    background-color: #f0f0f0;
+}
+
+
+/*header css starts here*/
+header{
+    background-color: #333;
+    color: aliceblue;
+    padding: 0.5%;
+}
+
+header a, a:hover, a:active, a:visited{
+    text-decoration: none;
+    color: aliceblue;
+}
+
+/*header css ends here*/
+
+
+
+/*footer css starts here*/
+footer{
+    background-color: #49494c;
+    color: aliceblue;
+    height: auto;
+    font-family: 'Indie Flower', cursive;
+}
+
+
+
+/*footer css ends here*/

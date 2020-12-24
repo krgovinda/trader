@@ -1,0 +1,109 @@
+/*try to add css to tags accordingly in the order of their use in main html*/
+
+/*kahe k matlab ki jo tag pehle aaya uspe pehle css laga k rafa dafa kar*/
+
+/*
+::selection {
+    color: white;
+    background: #333;
+}
+*/
+
+
+header{
+    background-color: #333;
+    color: aliceblue;
+    
+}
+
+header a{
+    display: block;
+    text-decoration: none;
+    color: aliceblue;
+    padding: 5px;
+    margin: 2px;
+    
+}
+
+header a:hover, a:active, a:visited{
+    text-decoration: none;
+    color: whitesmoke;
+    
+}
+
+header h2 a:active, a:visited{
+    border: none;
+    
+}
+
+header ul li{
+    list-style-type: none;
+    float: left;
+}
+
+header ul li a:hover, a:active{
+    border-bottom: solid;
+    opacity: 0.7;
+/*    background-color: #151515;*/
+}
+
+#always-after-header{
+    height: 600px;
+    color: aliceblue;
+    text-align: center;
+    padding-top: 200px;
+}
+
+.content{
+    text-align: justify;
+}
+.content center h3{
+    padding: 20px;
+}
+
+
+.content p{
+    padding: 30px;
+}
+
+/*developers B^) starts */
+.developers{
+    height: auto;
+    
+}
+
+.developers .raj:hover{
+    background-color: #333;
+    color:aliceblue;
+}
+
+.developers .kumar:hover{
+    background-color: #333;
+    color:aliceblue;
+}
+
+.developers .anand:hover{
+    background-color: #333;
+    color:aliceblue;
+}
+
+.dev-avatar{
+    height: 50px;
+    border-radius: 50%;
+    
+}
+/*developers end*/
+
+
+#embedded-map{
+    height: auto;
+    width : 100%;
+    max-height: 250px;
+}
+
+footer{
+    background-color: #49494c;
+    color: aliceblue;
+    height: auto;
+    font-family: 'Indie Flower', cursive;
+}

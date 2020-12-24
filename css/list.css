@@ -1,0 +1,29 @@
+.card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 10px;
+}
+
+/*
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .card{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+*/
+
+.description{
+/*    max-height: 10px;*/
+/*    display: none;*/
+/*    max-height: 5px;*/
+}
+
+.description p{
+    color: grey;
+    max-height: inherit;
+/*    font-size: 2px;*/
+/*    line-height: 1;*/
+}
+
