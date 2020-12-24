@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Akshay Traders | Ping Pong</title>
+    
+    
+     <!--     link tags start here-->
+     
+        <!--    favicon-->
+       <link rel="icon" href="images/pidilite_logo.png" type="image/png" >
+
+
+        <!--   font awesome-->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+          <!--    bootstrap css link-->
+        <link rel="stylesheet" href="css/bootstrap.css">
+
+        <!--    layout.css-->
+       <link rel="stylesheet" href="css/layout.css">
+       
+<!--       list.css-->
+      <link rel="stylesheet" href="css/list.css">
+   
+<!--   script tags start here-->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        
+        
+<!--        google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+</head>
+<body>
+    
+    <header class="container-fluid sticky-top">
+        <div class="row">
+            <div class="col-9"><h2><a href="index.php">Akshay Traders</a></h2></div>
+            <div class="col-3"><a href="customerprofile.php"><span style="float:right;"><?php if(isset($_SESSION['username']))echo "hello, ".$_SESSION['username']; ?></span><i class="fas fa-user-alt float-right" style="margin:3px;"></i></a>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col"><h2>Ping Pong</h2></div>
+        </div>
+    </div>
+    
+    
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <canvas id="gameCanvas" width="700" height="600"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <footer class="container-fluid text-center">
+        <div class="row">
+            <div class="col-6"><p class=""><strong>Come Visit Us</strong><br>Sumitra Sadan <br>Paharpur <br>Anisabad <br>Patna-2</p></div>
+            <div class="col-6"><p><b>Opening Hours</b><br>Opens at <br>9.00AM <br>Closes at <br>9.00PM</p></div>
+        </div>
+    </footer>
+    
+     <script>
+        
+        var canvas;
+        var canvasContext;
+        
+        var ballX = 350;
+        var ballY = 300;
+        var ballSpeedX = 6;
+        var ballSpeedY = 7;
+        
+        var player1Score = 0;
+        var player2Score = 0;
+        const WINNING_SCORE = 5;
+        
+        var isWinningScreenShowing = false;
+        
+        var paddle1Y = 250;
+        var paddle2Y = 250;
+        const PADDLE_HEIGHT= 100;
+        const PADDLE_WIDTH = 8;
+        
+        
+        function createCircle(centerX,centerY,radius,color){
+            canvasContext.fillStyle = color;
+            canvasContext.beginPath();
+            canvasContext.arc(centerX,centerY,radius,0*Math.PI,2*Math.PI);
+            canvasContext.fill();
+//            canvasContext.stroke(); //outline the circle
+        }
+        
+        function createRect(leftX,topY,width,height,color){
+            canvasContext.fillStyle = color;
+            canvasContext.fillRect(leftX,topY,width,height);
+        }
+        
+        function computerMovement(){
+            var paddle2YCenter = paddle2Y + (PADDLE_HEIGHT/2);
+            if(paddle2YCenter < ballY)
+                paddle2Y= paddle2Y + 6;
+            else if(paddle2YCenter > ballY)
+                paddle2Y= paddle2Y - 6;
+        }
+        
+        function calculateMousePos(evt){
+            var rect = canvas.getBoundingClientRect();
+//            var root = document.documentElement; //no need
+//            var mouseY = evt.clientY - rect.top - root.scrollTop; //when scroll bar appears mouse and paddle doesn't sync
+            var mouseY = evt.clientY - rect.top;
+            return mouseY;
+        }
+               
+        function ballReset(){
+            if(player1Score >= WINNING_SCORE || player2Score >= WINNING_SCORE){
+                isWinningScreenShowing=true;
+                
+            }
+            ballSpeedX=-ballSpeedX;
+            ballX = canvas.width/2;
+            ballY = canvas.height/2;
+        }
+        
+        function moveEverything(){
+            
+            if(isWinningScreenShowing){
+                canvas.addEventListener('click',function(evt){
+                    isWinningScreenShowing=false;
+                    player1Score=0;
+                    player2Score=0;
+                    return isWinningScreenShowing;
+                })
+                return;
+            }
+            
+            computerMovement();
+            
+            ballX = ballX + ballSpeedX;
+            ballY = ballY + ballSpeedY;
+            if(ballX>=canvas.width){
+                if(ballY>=paddle2Y && ballY<=paddle2Y+PADDLE_HEIGHT)
+                    ballSpeedX=-ballSpeedX;
+                else{
+                    player1Score++;//must be before ballReset()
+                    ballReset();
+                }
+                                    
+            }
+            else if(ballX<0){
+                if(ballY>=paddle1Y && ballY<=paddle1Y+PADDLE_HEIGHT){
+                    ballSpeedX=-ballSpeedX;
+                    //don't ask about the next two lines...please
+                    deltaY = ballY -(paddle1Y+PADDLE_HEIGHT/2);
+                    ballSpeedY = deltaY * 0.35;
+                }
+                    
+                else{
+                    player2Score++;//must be before ballReset()
+                    ballReset();
+                }
+                                    
+            } 
+            else if(ballY>=canvas.height) 
+                ballSpeedY=-ballSpeedY;
+            else if(ballY<0) 
+                ballSpeedY=-ballSpeedY;
+            
+        }
+        
+        function drawEverything(){
+            
+//            black canvas color
+            createRect(0,0,canvas.width,canvas.height,'black');
+            
+            if(isWinningScreenShowing){
+                canvasContext.fillStyle = 'white';
+                if(player1Score>=WINNING_SCORE){
+                    canvasContext.fillText("Chicken Dinner For Left Player",canvas.width/2-70,canvas.height/2);
+                }
+                    
+                else if(player2Score>=WINNING_SCORE){
+                    canvasContext.fillText("Chicken Dinner For Right Player",canvas.width/2-70,canvas.height/2);
+                }
+                
+                    
+                canvasContext.fillText("Click to Continue",canvas.width/2-30,canvas.height-100);
+                return;
+            }
+            
+//            left player paddle
+            createRect(1,paddle1Y,PADDLE_WIDTH,PADDLE_HEIGHT,'white');
+            
+            
+//            right computer player paddle
+            createRect(canvas.width-PADDLE_WIDTH-1,paddle2Y,PADDLE_WIDTH,PADDLE_HEIGHT,'white');            
+            
+            //            draws the ball
+//            createRect(ballX,100,10,10,'red');
+            createCircle(ballX,ballY,10,'white');
+            
+//            draws the net
+            createRect(canvas.width/2-1,0,2,canvas.height,'white');
+            
+            
+//            scores
+            canvasContext.fillText(player1Score,100,100);
+            canvasContext.fillText(player2Score,canvas.width-100,100);
+        }
+        
+        
+        
+        window.onload = function(){
+            
+            canvas = document.getElementById('gameCanvas');
+            canvasContext = canvas.getContext("2d");
+            var framePerSecond = 30;
+            setInterval(function(){moveEverything(); drawEverything()},1000/framePerSecond);
+            
+            canvas.addEventListener('mousemove',function(evt){
+                var mousePos = calculateMousePos(evt);
+                paddle1Y = mousePos - PADDLE_HEIGHT/2;
+//                paddle2Y = mousePos - PADDLE_HEIGHT/2;//for computer right
+            })
+            
+//            canvas.addEventListener('click',function(evt){
+//                    isWinningScreenShowing=false;
+//                    return isWinningScreenShowing;
+//                })
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </script>
+    
+</body>
+</html>

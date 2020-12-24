@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>Akshay Traders | Sign Up</title>
+    
+    <!--     link tags start here-->
+     
+        <!--    favicon-->
+       <link rel="icon" href="images/pidilite_logo.png" type="image/png" >
+
+
+        <!--   font awesome-->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+          <!--    bootstrap css link-->
+        <link rel="stylesheet" href="css/bootstrap.css">
+
+        <!--    layout.css-->
+       <link rel="stylesheet" href="css/layout.css">
+       
+<!--       signup.css link-->
+  <link rel="stylesheet" href="css/signup.css"s>
+   
+   
+<!--   script tags start here-->
+       
+<!--       validation script-->
+        <script src="js/validation.js"></script>
+<!--           ajax-->
+           <script src="js/ajax.js"></script>
+
+           <!--parallax js-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="js/parallax.js"></script>
+        
+</head>
+<body>
+    
+    <header class="container-fluid sticky-top">
+        <div class="row">
+            <div class="col"><h2><a href="index.php">Akshay Traders</a></h2></div>
+        </div>
+    </header>
+    <div class="container form">
+       <div class="row">
+           <div class="col form-heading"><h2>Be a part of our dream</h2></div>
+       </div>
+       <div class="row">
+           <div class="col form-para"><p>Creating an account is easy and just one time hassle, and you know the best part, it's free and will always be ! </p></div>
+        </div>
+        <form action="signedup.php" method="post">
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="inputFname">First Name</label>
+                    <input type="text" name="fname" id="inputFname" placeholder="First Name" class="form-control" required minlength="4" maxlength="20" onfocusout="validateFname()">
+                </div>
+                <div class="form-group col">
+                    <label for="inputFname">Last Name</label>
+                    <input type="text" name="lname" id="inputLname" placeholder="Last Name" class="form-control" required minlength="4" maxlength="20" onfocusout="validateLname()">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="inputStore">Store Name</label>
+                    <input type="text" name="sname" id="inputStore" placeholder="XYZ Store" class="form-control" required minlength="5" maxlength="20" onfocusout="validateSname()">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="inputAddress1">Address</label>
+                    <input type="text" name="address1" id="inputAddress1" placeholder="123 Colony, Street" class="form-control" required minlength="4">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="inputMobile">Mobile Number</label>
+                    <input type="text" name="mobile" id="inputMobile" placeholder="Mobile Number" class="form-control" required minlength="10" maxlength="10" onfocusout="validateMobile()" onchange="validateMobileAj(this.value)">
+                    <span id="msg-for-username"></span>
+                </div>
+                <div class="form-group col">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" name="email" id="inputEmail" placeholder="someone@something.com" class="form-control" required minlength="8" onfocusout="validateEmail()" onchange="validateEmailAj(this.value)">
+                    <span id="msg-for-useremail"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <label for="inputCity">City</label>
+                    <input type="text" name="city" id="inputCity" class="form-control" required minlength="3" onfocusout="validateCity()">
+                </div>
+                <div class="form-group col">
+                    <label for="selectState">State</label>
+                    <select name="state" id="selectState" class="form-control">
+                        <option value="bihar">Bihar</option>
+                        <option value="bengal">Bengal</option>
+                        <option value="jharkhand">Jharkhand</option>
+                        <option value="uttar pradesh">Uttar Pradesh</option>
+                        <option value="madhya pradesh">Madhya Pradesh</option>
+                    </select>
+                </div>
+                <div class="form-group col">
+                    <label for="inputPincode">Pincode</label>
+                    <input type="text" name="pincode" id="inputPincode" class="form-control" required minlength="6" maxlength="6" onfocusout="validatePincode()">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="inputPassword1">Enter Password</label>
+                    <input type="password" name="password" id="inputPassword1" class="form-control" required minlength="8" maxlength="20" onfocusout="validatePassword()">
+                </div>
+                <div class="form-group col">
+                    <label for="inputPassword2">Confirm Password</label>
+                    <input type="password" name="cfmpassword" id="inputPassword2" class="form-control" required minlength="8" maxlength="20" onfocusout="validateConfirmPassword()">
+                </div>
+                
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col">
+                   <label for="inputQuestion">Password Recovery Questions</label>
+                    <select name="ques" id="inputQuestion" class="form-control">
+                    <option value="q1">If you woke up as your least favourite teacher, what will you do?</option>
+                    <option value="q2">Which is your favourite comic character ?</option>
+                    <option value="q3">Who was your first crush?</option>
+                    <option value="q4">What is your dream car?</option>
+                    <option value="q5">What will you trade to have the powers of becoming voluntarily invisible?  </option>
+                    
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <input type="text" name="ans2que" id="inputAnswer" class="form-control" required placeholder="" minlength="2" maxlength="">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col">
+                    <button type="submit" class="btn btn-info">Sign up</button>
+                </div>
+            </div>
+            
+        </form>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col"><p>Already signed up? <a href="login.html" style="color: mediumblue">Log In</a></p></div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <footer class="container-fluid text-center">
+        <div class="row">
+            <div class="col-6"><p class=""><strong>Come Visit Us</strong><br>Sumitra Sadan <br>Paharpur <br>Anisabad <br>Patna-2</p></div>
+            <div class="col-6"><p><b>Opening Hours</b><br>Opens at <br>9.00AM <br>Closes at <br>9.00PM</p></div>
+        </div>
+    </footer>
+</body>
+</html>
